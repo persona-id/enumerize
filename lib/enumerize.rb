@@ -11,6 +11,7 @@ module Enumerize
   autoload :Set,          'enumerize/set'
   autoload :Base,         'enumerize/base'
   autoload :Module,       'enumerize/module'
+  autoload :Constants,    'enumerize/constants'
   autoload :Predicates,   'enumerize/predicates'
   autoload :Predicatable, 'enumerize/predicatable'
   autoload :Utils,        'enumerize/utils'
@@ -35,6 +36,7 @@ module Enumerize
   def self.extended(base)
     base.send :include, Enumerize::Base
     base.extend Enumerize::Predicates
+    base.extend Enumerize::Constants
 
     if defined?(::ActiveModel::Attributes)
       base.extend Enumerize::ActiveModelAttributesSupport

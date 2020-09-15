@@ -249,6 +249,35 @@ User.role.find_value(:user).value #=> 1
 User.role.find_value(:admin).value #=> 2
 ```
 
+Constants:
+
+```ruby
+class User
+  extend Enumerize
+
+  enumerize :sex, in: %w(male female), constants: true
+end
+
+user = User.new
+
+User::SEX_MALE   # => 'male'
+User::SEX_FEMALE # => 'female'
+```
+
+Using prefix:
+
+```ruby
+class User
+  extend Enumerize
+  enumerize :sex, in: %w(male female), constants: { prefix: 'FOO' }
+end
+
+User::FOO_MALE   # => 'male'
+User::FOO_FEMALE # => 'female'
+```
+
+Use `:only` and `:except` options to specify what values create constants for.
+
 ActiveRecord scopes:
 
 ```ruby
